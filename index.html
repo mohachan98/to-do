@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f2ea" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="To Do" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>To Do</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero" aria-labelledby="app-title">
+        <div>
+          <p class="eyebrow">Today</p>
+          <h1 id="app-title">To Do</h1>
+        </div>
+        <div class="date-card" aria-live="polite">
+          <span id="weekday"></span>
+          <strong id="today"></strong>
+        </div>
+      </section>
+
+      <section class="quick-add" aria-label="タスク追加">
+        <form id="task-form" class="task-form">
+          <label class="field">
+            <span>新しいタスク</span>
+            <input
+              id="task-input"
+              type="text"
+              autocomplete="off"
+              placeholder="例: コーヒー豆を買う"
+              required
+            />
+          </label>
+
+          <label class="field category-field">
+            <span>項目</span>
+            <select id="task-category">
+              <option value="daily">Fixed</option>
+              <option value="idea">Anytime</option>
+            </select>
+          </label>
+
+          <button class="primary-button" type="submit">追加</button>
+        </form>
+      </section>
+
+      <section class="boards" aria-label="タスク一覧">
+        <article class="task-board">
+          <header class="board-header">
+            <div>
+              <h2>Fixed</h2>
+            </div>
+            <span id="daily-count" class="count-pill">0</span>
+          </header>
+          <ul id="daily-list" class="task-list"></ul>
+          <p id="daily-empty" class="empty-state">Fixed のタスクを追加できます。</p>
+        </article>
+
+        <article class="task-board">
+          <header class="board-header">
+            <div>
+              <h2>Anytime</h2>
+            </div>
+            <span id="idea-count" class="count-pill">0</span>
+          </header>
+          <ul id="idea-list" class="task-list"></ul>
+          <p id="idea-empty" class="empty-state">Anytime のタスクを追加できます。</p>
+        </article>
+      </section>
+    </main>
+
+    <template id="task-template">
+      <li class="task-item">
+        <label class="check-wrap">
+          <input class="task-check" type="checkbox" />
+          <span class="custom-check" aria-hidden="true"></span>
+        </label>
+        <textarea class="task-title" rows="1"></textarea>
+        <button class="icon-button move-button" type="button" title="別の項目へ移動" aria-label="別の項目へ移動">
+          ↔
+        </button>
+        <button class="icon-button delete-button" type="button" title="削除" aria-label="削除">
+          ×
+        </button>
+      </li>
+    </template>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
+
